@@ -1,4 +1,7 @@
-{% load static %} {% block content %}
+{% load static %}
+<title>CE PCC LIST</title>
+<link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1PZauGQn3bq2C5fOUL7A8Y017pYKZ5hmr">
+{% block content %}
 <script>
   function toggleMenu() {
     const menu = document.querySelector(".menu");
@@ -29,7 +32,7 @@
     box-sizing: border-box;
   }
   body {
-    font-family: "Inter", sans-serif;
+    font-family: "Sarabun", sans-serif;
     background-color: #ffffff;
   }
   .navbar {
@@ -198,10 +201,12 @@
 <nav class="navbar">
   <div class="logo">
     <a href="{% url 'home' %}">
-      <img src="{%static 'img/picture/Logo_ce.png'%}" alt="CE Logo" />
+      <img src="{% static 'img/picture/Logo_ce.png' %}" alt="CE Logo" />
     </a>
   </div>
-  <div class="">CE03</div>
+  <div class="">
+    <a href="{% url 'home' %}" style="color: white; text-decoration: none;">CE03</a>
+  </div>
   <div class="hamburger" onclick="toggleMenu()">
     <div></div>
     <div></div>
@@ -215,7 +220,7 @@
   </div>
 </nav>
 <div class="menu-mobile">
-  <img src="{%static 'img/picture/close.png'%}" alt="" onclick="closeMenu()" />
+  <img src="{% static 'img/picture/close.png' %}" alt="" onclick="closeMenu()" />
   <a href="{% url 'ce04s' %}">CE01</a>
   <a href="{% url 'ce03s' %}">CE02</a>
   <a href="{% url 'ce02s' %}">CE03</a>
@@ -224,12 +229,12 @@
 <h1
   style="
     text-align: center;
-    color: #1e3a8a;
+    color: #ffff;
     margin-bottom: 20px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Sarabun', sans-serif;
   "
 >
-  รายชื่อนักศึกษาชั้นปีที่ 3 (CE 02)
+  รายชื่อนักศึกษาชั้นปีที่ 2 (CE 03)
 </h1>
 
 <div
@@ -237,7 +242,7 @@
     width: 100%;
     margin: auto;
     padding: 30px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Sarabun', sans-serif;
   "
 >
   <div style="display: flex; padding: 0px 20px; gap: 10px">
@@ -271,7 +276,8 @@
   </div>
   <!-- รายการนักศึกษา -->
   <div style="border-radius: 0 0 10px 10px">
-    {% for item in ce02s %} {% if item.years == 2 %}
+    {% for item in ce02s %}
+    {% if item.years == 2 %}
     <div style="display: flex; margin: 15px 20px; gap: 10px">
       <div
         style="
@@ -284,7 +290,13 @@
           text-align: center;
         "
       >
-        {{ item.student_id }}
+        <a
+          href="#"
+          onclick="event.preventDefault(); showPopup('{{ item.student_id }}', '{{ item.name }}', '{{ item.gender }}', '{{ item.email }}', '{{ item.nickname }}', '{{ item.phone }}', '{{ item.years }}')"
+          style="color: white; text-decoration: none"
+        >
+          {{ item.student_id }}
+        </a>
       </div>
       <div
         style="
@@ -297,21 +309,21 @@
       >
         <a
           href="#"
-          onclick="showPopup('{{ item.student_id }}', '{{ item.name }}', '{{ item.gender }}', '{{ item.email }}', '{{ item.nickname }}', '{{ item.phone }}', '{{ item.years }}')"
+          onclick="event.preventDefault(); showPopup('{{ item.student_id }}', '{{ item.name }}', '{{ item.gender }}', '{{ item.email }}', '{{ item.nickname }}', '{{ item.phone }}', '{{ item.years }}')"
           style="color: white; text-decoration: none"
         >
           {{ item.name }}
         </a>
       </div>
     </div>
-    {% endif %} {% empty %}
-    <div style="padding: 20px; text-align: center; color: red; ">
-      ไม่พบนักศึกษาชั้นปีที่ 1
+    {% endif %}
+    {% empty %}
+    <div style="padding: 20px; text-align: center; color: red;">
+      ไม่พบนักศึกษาชั้นปีที่ 2
     </div>
     {% endfor %}
   </div>
-</div >
-
+</div>
 
 <!-- เพิ่ม SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -323,7 +335,7 @@
                 <div style="display: flex;flex-direction:column; gap: 20px; background-color: #ffff;">
                     <div style="display: flex;flex-direction: row; gap: 20px;justify-content: center;align-items: center">
                         <p style="width:30%;height:100%;background-color: #283593;color:#ffff;padding:10;border-radius: 10px; ">รหัสนักศึกษา</p>
-                        <P style="width:70%; height:100%;background-color: #283593;color:#ffff;padding:10;border-radius: 10px; ">ชื่อ-นามสกลุล</P>
+                        <P style="width:70%; height:100%;background-color: #283593;color:#ffff;padding:10;border-radius: 10px; ">ชื่อ-นามสกุล</P>
                     </div>
                     <div style="display: flex;flex-direction: row; gap: 20px;justify-content: center;align-items: center">
                         <p style="width:30%;height:100%;background-color: #414EA6;color:#ffff;padding:10;border-radius: 10px; ">${student_id}</p>
@@ -334,7 +346,7 @@
                 <div >
                     <div style="text-align: center;  background-color: #414EA6;padding:20px;border-radius:10px">
                         <img src="https://static.vecteezy.com/system/resources/previews/024/983/914/non_2x/simple-user-default-icon-free-png.png" alt="Student Image" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; ;background-color: #cccc;">
-                        <div style="text-align: left; font-family: 'Inter', sans-serif; font-size: 16px; background-color: #ffff;padding:20px;border-radius:10px;margin-top: 20px;
+                        <div style="text-align: left; font-family: 'Sarabun', sans-serif; font-size: 16px; background-color: #ffff;padding:20px;border-radius:10px;margin-top: 20px;
                         display:flex; flex-direction: row;gap:80px">
                             <div>
                                 <p><strong style="color: #000;font-size:20px">Student ID :</strong> ${student_id}</p>
@@ -346,12 +358,11 @@
                                 <p><strong style="color: #000;font-size:20px">Name :</strong> ${name}</p>
                                 <p><strong style="color: #000;font-size:20px">ชื่อเล่น:</strong> ${nickname}</p>
                                 <p><strong style="color: #000;font-size:20px">เบอร์โทร:</strong> ${phone}</p>
+                                <img src="https://drive.google.com/thumbnail?id=1PZauGQn3bq2C5fOUL7A8Y017pYKZ5hmr" alt="Logo" style="position: absolute; bottom: 125px; right: 50px; width: 50px; height: 50px; object-fit: contain;">
                             </div>
                         </div>
                     </div>
                 </div>
-                
-            
             `,
       confirmButtonText: "ปิด",
       confirmButtonColor: "#BD181A",
@@ -359,23 +370,24 @@
         popup: "sweetalert-custom",
         title: "sweetalert-title",
         htmlContainer: "sweetalert-content",
+        confirmButton: "sweetalert-confirm-button" // Add custom class for confirm button
       },
     });
   }
 </script>
 
 <style>
-  /* Import Inter font from Google Fonts */
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+  /* Import Sarabun font from Google Fonts */
+  @import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap");
 
-  /* Apply Inter font globally */
+  /* Apply Sarabun font globally */
   body,
   h1,
   div,
   p,
   a,
   span {
-    font-family: "Inter", sans-serif;
+    font-family: "Sarabun", sans-serif;
   }
 
   @keyframes slideIn {
@@ -414,7 +426,6 @@
     width: 900px !important;
     height: fit-content;
     border-radius: 20px !important;
-    /* padding: 20px !important; */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
   }
 
@@ -422,11 +433,17 @@
     color: #1e3a8a !important;
     font-size: 28px !important;
     font-weight: 600 !important;
-    
   }
 
   .sweetalert-content {
-    font-family: "Inter", sans-serif !important;
+    font-family: "Sarabun", sans-serif !important;
+  }
+
+  /* Style for SweetAlert2 confirm button */
+  .sweetalert-confirm-button {
+    font-family: "Sarabun", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
   }
 </style>
 

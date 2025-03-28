@@ -6,19 +6,6 @@ from .google_sheets import df
 def sync_google_sheet_data():
     GoogleSheetData.objects.all().delete()
     for _, row in df.iterrows():
-        birthdate = row.get('Birthdate', '')  # รับค่าจาก Google Sheet
-        
-        # ✅ ตรวจสอบว่า birthdate ไม่ใช่ "0000-00-00"
-        if birthdate == "0000-00-00":
-            birthdate = None  # หรือสามารถกำหนดค่าเป็นค่าอื่น เช่น '2000-01-01'
-
-        # ✅ ตรวจสอบรูปแบบวันที่ให้ถูกต้องก่อนบันทึก
-        if birthdate:
-            try:
-                birthdate = datetime.strptime(birthdate, "%Y-%m-%d").date()  
-            except ValueError:
-                birthdate = None  # ถ้ารูปแบบผิด ให้กำหนดเป็น None
-
         GoogleSheetData.objects.create(
             D = row['D'],    
             email=row['email'],
@@ -32,8 +19,8 @@ def sync_google_sheet_data():
         )
 
 # Create your views here.
+sync_google_sheet_data()
 def ce01s(request):
-    sync_google_sheet_data()
     ce01s = GoogleSheetData.objects.all()
     return render(request, 'app_students/ce01s.html',{'ce01s':ce01s})
 def ce02s(request):
