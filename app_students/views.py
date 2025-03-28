@@ -37,12 +37,15 @@ def ce01s(request):
     ce01s = GoogleSheetData.objects.all()
     return render(request, 'app_students/ce01s.html',{'ce01s':ce01s})
 def ce02s(request):
+    sync_google_sheet_data()
     ce02s = GoogleSheetData.objects.all()
     return render(request, 'app_students/ce02s.html',{'ce02s':ce02s})
 def ce03s(request):
+    sync_google_sheet_data()
     ce03s = GoogleSheetData.objects.all()
     return render(request, 'app_students/ce03s.html',{'ce03s':ce03s})
 def ce04s(request):
+    sync_google_sheet_data()
     ce04s = GoogleSheetData.objects.all()
     return render(request, 'app_students/ce04s.html',{'ce04s':ce04s})
 from django.shortcuts import render
