@@ -7,376 +7,313 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Welcome to Computer Engineering</title>
-    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1PZauGQn3bq2C5fOUL7A8Y017pYKZ5hmr">
+    <title>My Django Page</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Roboto", Arial, sans-serif;
-      }
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Welcome to Computer Engineering</title>
+        <style>
+          html {
+            height: 100%;
+            /* Ensure html takes full height */
+          }
 
-      :root {
-        --primary-color: #283593;
-        --secondary-color: #261fb3;
-        --hover-color: #161179;
-        --white: #ffffff;
-      }
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+          }
 
-      body {
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-      }
+          body {
+            touch-action: manipulation;
+            background-color: #f0f0f0;
+            height: 100%;
+            /* Changed to 100% to inherit from html */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+          }
 
-      .hamburger {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: clamp(1.5rem, 5vw, 2rem);
-        color: var(--white);
-        cursor: pointer;
-        z-index: 10;
-      }
-
-      .menu {
-        display: none;
-        position: absolute;
-        top: 4.5rem;
-        right: 1rem;
-        background-color: var(--secondary-color);
-        width: clamp(120px, 30vw, 150px);
-        border: 2px solid var(--white);
-        border-radius: 10px;
-        z-index: 10;
-      }
-
-      .menu.show {
-        display: block;
-      }
-
-      .menu-item {
-        padding: clamp(8px, 2.5vw, 15px);
-        text-align: center;
-        color: var(--white);
-        font-size: clamp(0.9rem, 2vw, 1.1rem);
-        font-weight: bold;
-        cursor: pointer;
-        border-bottom: 1px solid var(--white);
-        transition: background-color 0.3s;
-      }
-
-      .menu-item:last-child {
-        border-bottom: none;
-      }
-
-      .menu-item:hover {
-        background-color: var(--hover-color);
-      }
-
-      .menu a {
-        color: var(--white);
-        text-decoration: none;
-        display: block;
-      }
-
-      .content {
-        position: relative;
-        z-index: 0;
-        background: linear-gradient(
-          135deg,
-          var(--white) 10%,
-          var(--primary-color) 10%,
-          var(--primary-color) 70%,
-          var(--white) 70%
-        );
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-        height: 100%;
-      }
-
-      .content-bg {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-      }
-
-      .content-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -16%;
-        width: 100%;
-        height: 100%;
-        background-image: url("{% static 'img/network_earth.png' %}");
-        background-size: 120%;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0.3;
-        z-index: -1;
-      }
-
-      .content1 {
-        width: 100% !important;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo img {
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
-      }
-
-      .hamburger {
-        display: flex;
-        font-size: 2rem;
-        color: #000;
-        align-items: flex-end;
-        cursor: pointer;
-        z-index: 10;
-      }
-
-      .content2 {
-        height: 85%;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-      }
-
-      .text1 {
-        color: #ffff;
-
-        .text-head {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: start;
-          h1 {
+          .container {
             width: 100%;
-            font-size: 140px;
-          }
-
-          h2 {
-            font-size: 50px;
-          }
-          p {
-            margin-top: 10%;
-            font-size: 40px;
-          }
-        }
-
-        margin-left: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        align-items: start;
-        gap: 25%;
-      }
-
-      .bottom-left {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        font-size: 25px;
-      }
-
-      .text2 {
-        height: 100%;
-        width: auto;
-        display: flex;
-        justify-content: flex-end;
-
-        align-items: flex-end;
-      }
-
-      .text2 img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-      }
-      @media screen and (max-width: 1100px) {
-        .content2 {
-          flex-direction: column;
-          .text1 {
-            justify-content: start;
-            .bottom-left {
-              margin-top: 20%;
-            }
-          }
-          .text2 {
-            img {
-              position: absolute; 
-              bottom: 20px; 
-              width: 50%; 
-              height: auto; 
-              object-fit: contain;
-            }
-          }
-        }
-      }
-      @media screen and (max-width: 791px) {
-        .content2 {
-          .text1 {
-            height: 100%;
-            margin-top: 15%;
-            margin-left: 100px;
+            height: 100vh;
+            /* Changed from min-height to height for full-screen enforcement */
+            position: relative;
+            background: linear-gradient(
+              136deg,
+              #ffffff 10%,
+              #283593 10%,
+              #283593 70%,
+              #ffffff 70%
+            );
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: start;
-            gap: 10%;
-            .text-head {
-              h1 {
-                font-size: 100px;
-              }
-              h2 {
-                font-size: 30px;
-              }
-              p {
-                font-size: 25px;
-              }
-            }
+            padding: 1rem;
+            overflow: hidden;
+            /* Optional: prevents scrolling if content overflows */
           }
-        }
-      }
-      @media screen and (max-width: 608px) {
-        .content2 {
-          .text1 {
-            height: 100%;
-            margin-top: 15%;
-            margin-left: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: start;
-            gap: 10%;
-            .text-head {
-              h1 {
-                font-size: 70px;
-              }
-              h2 {
-                font-size: 30px;
-              }
-              p {
-                font-size: 25px;
-              }
-            }
+
+          .container::before {
+            content: "";
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><pattern id="pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M0 50L50 0" stroke="white" stroke-opacity="0.2" /><path d="M0 0L50 50" stroke="white" stroke-opacity="0.2" /></pattern><rect x="0" y="0" width="100%" height="100%" fill="url(#pattern)" /></svg>')
+              repeat;
           }
-        }
-      }
-      @media screen and (max-width: 480px) {
-        .content1{
+
+          .logo {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: clamp(50px, 8vw, 100px);
+            height: clamp(50px, 8vw, 100px);
+          }
+
           .logo img {
-            width: 70px;
-            height: 70px;
-          }
-        }
-        .content2 {
-          .text1 {
+            width: 100%;
             height: 100%;
-            margin-top: 15%;
-            margin-left: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: start;
-            gap: 10%;
-            .text-head {
-              h1 {
-                font-size: 50px;
-              }
-              h2 {
-                font-size: 30px;
-              }
-              p {
-                font-size: 25px;
-              }
+            object-fit: contain;
+          }
+
+          .hamburger {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 2;
+            i {
+              font-size: 45px;
             }
           }
-        }
-      }
-    </style>
-    <body>
-      <div class="content">
-        <div class="content-bg">
-          <div class="content1">
-            <div class="logo">
-              <img src="{% static 'img/logo.png' %}" alt="Logo" />
-            </div>
-            <div class="hamburger" onclick="toggleMenu()">
-              <i
-                class="fa-solid fa-bars"
-                style="font-size: 60px; color: #ffff"
-              ></i>
-              <div class="menu" id="myMenu">
-                <div class="menu-item">
-                  <a href="{% url 'ce04s' %}">CE01</a>
-                </div>
-                <div class="menu-item">
-                  <a href="{% url 'ce03s' %}">CE02</a>
-                </div>
-                <div class="menu-item">
-                  <a href="{% url 'ce02s' %}">CE03</a>
-                </div>
-                <div class="menu-item">
-                  <a href="{% url 'ce01s' %}">CE04</a>
-                </div>
-              </div>
+
+          .menu {
+            display: none;
+            position: absolute;
+            top: 4rem;
+            right: 1rem;
+            background-color: #261fb3;
+            width: clamp(120px, 40vw, 150px);
+            padding: 0;
+            z-index: 2;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+          }
+
+          .menu.show {
+            display: block;
+          }
+
+          .menu-item {
+            padding: clamp(10px, 3vw, 20px);
+            text-align: center;
+            color: #ffffff;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px solid #ffffff;
+          }
+
+          .menu-item:last-child:hover {
+            border-radius: 0px 0 10px 10px;
+          }
+
+          .menu-item:hover {
+            background-color: #161179;
+            border-radius: 10px 10px 0px 0px;
+          }
+
+          .text-content {
+            color: #ffffff;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+            flex-grow: 1;
+          }
+
+          .text-content .text1 {
+            padding-left: 4rem;
+          }
+
+          .text-content h1 {
+            font-size: clamp(2rem, 10vw, 6rem);
+            padding-left: 1rem;
+          }
+
+          .text-content h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+          }
+
+          .text-content p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            padding-left: 1rem;
+            margin-top: 1rem;
+          }
+
+          .text-content .p {
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            margin-top: 2rem;
+            padding-left: 1rem;
+            font-weight: bold;
+          }
+
+          .icon {
+            position: relative;
+            right: 0;
+            width: clamp(150px, 30vw, 500px);
+            height: clamp(150px, 30vw, 500px);
+            margin: 2rem 0rem;
+            align-self: flex-end;
+          }
+
+          .icon img {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            right: 10px;
+            top: -450px;
+            z-index: 1;
+          }
+
+          /* Media Queries for additional responsiveness */
+          @media (max-width: 768px) {
+            .container::before {
+              width: 90%;
+              left: 5%;
+            }
+
+            .text-content {
+              margin-top: 3rem;
+            }
+
+            .logo {
+              width: clamp(40px, 6vw, 80px);
+              height: clamp(40px, 6vw, 80px);
+            }
+          }
+
+          @media (max-width: 480px) {
+            .hamburger {
+              top: 0.5rem;
+              right: 0.5rem;
+            }
+
+            .menu {
+              top: 2.5rem;
+              right: 0.5rem;
+              width: clamp(100px, 50vw, 150px);
+            }
+
+            .text-content {
+              padding: 1rem 0.5rem;
+            }
+          }
+
+          .menu a {
+            color: #ffffff;
+            text-decoration: none;
+          }
+
+          .earthimg img {
+            height: 270%;
+            position: absolute;
+            top: -350px;
+            left: -420px;
+            z-index: 0;
+          }
+        </style>
+      </head>
+
+      <body>
+        <div class="container">
+          <div class="logo">
+            <img src="{%static 'img/logo.png'%}" alt="Logo" />
+          </div>
+          <div class="hamburger" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div class="menu" id="myMenu">
+            <div class="menu-item"><a href="{% url 'ce04s' %}">CE01</a></div>
+            <div class="menu-item"><a href="{% url 'ce03s' %}">CE02</a></div>
+            <div class="menu-item"><a href="{% url 'ce02s' %}">CE03</a></div>
+            <div class="menu-item"><a href="{% url 'ce01s' %}">CE04</a></div>
+          </div>
+          <div class="text-content">
+            <div class="text1" style="position: relative">
+              <h1>WELCOME</h1>
+              <h2>COMPUTER ENGINEERING</h2>
+              <p style="font-size: 40px; margin-top: 110px">
+                This site shows all members of<br />
+                Computer Engineering.
+              </p>
+              <p style="font-size: 22px; margin-top: 110px">
+                King Mongkut's Institute of Technology<br />
+                Ladkrabang Prince of Chumphon Campus
+              </p>
             </div>
           </div>
-          <div class="content2">
-            <div class="text1">
-              <div class="text-head">
-                <h1>WELCOME</h1>
-                <h2>COMPUTER ENGINEERING</h2>
-                <p>This site shows all members of<br />Computer Engineering.</p>
-              </div>
-
-              <div class="bottom-left">
-                King Mongkut's Institute of Technology<br />Ladkrabang Prince of
-                Chumphon Campus
-              </div>
-            </div>
-            <div class="text2">
-              <img src="{% static 'img/ce.png' %}" alt="" />
-            </div>
+          <div class="icon">
+            <img src="{%static 'img/ce.png'%}" alt="" />
+          </div>
+          <div class="earthimg">
+            <img src="{%static 'img/network_earth.png'%}" alt="" />
           </div>
         </div>
-      </div>
-    </body>
 
+         <!-- <script>
+        function toggleMenu() {
+            var menu = document.getElementById("myMenu");
+            menu.classList.toggle("show");
+        }
+
+        window.addEventListener('wheel', (e) => {
+            if (e.ctrlKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script> -->
     <script>
       function toggleMenu() {
-        const menu = document.querySelector(".menu");
-        menu.classList.toggle("show");
+          const menu = document.querySelector(".menu");
+          const menu_mobile = document.querySelector(".menu-mobile");
+          menu.classList.toggle("show");
+          menu_mobile.classList.toggle("show");
       }
 
-      document.addEventListener("click", function (event) {
-        const menu = document.querySelector(".menu");
-        const hamburger = document.querySelector(".hamburger");
-        if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+      function closeMenu() {
+          const menu = document.querySelector(".menu");
+          const menu_mobile = document.querySelector(".menu-mobile");
           menu.classList.remove("show");
-        }
+          menu_mobile.classList.remove("show");
+      }
+      document.addEventListener("click", function (event) {
+          const menu = document.querySelector(".menu");
+          const hamburger = document.querySelector(".hamburger");
+
+          if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+              menu.classList.remove("show");
+          }
       });
 
-    </script>
+  </script>
+
+      </body>
+    </html>
   </body>
 </html>
