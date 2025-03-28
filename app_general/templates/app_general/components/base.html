@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block site_title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'app_general/components/site_header.html'%}
+    {% block content %} {% endblock %}
+    {% include 'app_general/components/site_footer.html' %}
+    <script src="{%static 'script/script'}"></script>
+</body>
+</html>

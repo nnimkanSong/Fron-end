@@ -1,0 +1,51 @@
+<!-- <header style="background-color: lightgray;">
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'ce01s' %}">CE01</a>
+    <a href="{% url 'ce02s' %}">CE02</a>
+    <a href="{% url 'ce03s' %}">CE03</a>
+    <a href="{% url 'ce04s' %}">CE04</a>
+    <a href="{% url 'about' %}">about</a>
+    
+</header> -->
+{% load static %}
+
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="">
+          <img src="./picture/Logo_ce.png" alt="CE Logo" />
+        </a>
+      </div>
+      <div class="">CE01</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="menu">
+        <a href="">CE01</a>
+        <a href="">CE02</a>
+        <a href="">CE03</a>
+        <a href="">CE04</a>
+      </div>
+    </nav>
+    <div class="menu-mobile">
+      <img src="./picture/close.png" alt="" onclick="closeMenu()" />
+      <a href="">CE01</a>
+      <a href="">CE02</a>
+      <a href="">CE03</a>
+      <a href="">CE04</a>
+    </div>
+    <script src="script.js"></script>
+  </body>
+

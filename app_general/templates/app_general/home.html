@@ -1,0 +1,382 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Welcome to Computer Engineering</title>
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1PZauGQn3bq2C5fOUL7A8Y017pYKZ5hmr">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", Arial, sans-serif;
+      }
+
+      :root {
+        --primary-color: #283593;
+        --secondary-color: #261fb3;
+        --hover-color: #161179;
+        --white: #ffffff;
+      }
+
+      body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      .hamburger {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        color: var(--white);
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .menu {
+        display: none;
+        position: absolute;
+        top: 4.5rem;
+        right: 1rem;
+        background-color: var(--secondary-color);
+        width: clamp(120px, 30vw, 150px);
+        border: 2px solid var(--white);
+        border-radius: 10px;
+        z-index: 10;
+      }
+
+      .menu.show {
+        display: block;
+      }
+
+      .menu-item {
+        padding: clamp(8px, 2.5vw, 15px);
+        text-align: center;
+        color: var(--white);
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        font-weight: bold;
+        cursor: pointer;
+        border-bottom: 1px solid var(--white);
+        transition: background-color 0.3s;
+      }
+
+      .menu-item:last-child {
+        border-bottom: none;
+      }
+
+      .menu-item:hover {
+        background-color: var(--hover-color);
+      }
+
+      .menu a {
+        color: var(--white);
+        text-decoration: none;
+        display: block;
+      }
+
+      .content {
+        position: relative;
+        z-index: 0;
+        background: linear-gradient(
+          135deg,
+          var(--white) 10%,
+          var(--primary-color) 10%,
+          var(--primary-color) 70%,
+          var(--white) 70%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        height: 100%;
+      }
+
+      .content-bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .content-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -16%;
+        width: 100%;
+        height: 100%;
+        background-image: url("{% static 'img/network_earth.png' %}");
+        background-size: 120%;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      .content1 {
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+      }
+
+      .hamburger {
+        display: flex;
+        font-size: 2rem;
+        color: #000;
+        align-items: flex-end;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .content2 {
+        height: 85%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+      }
+
+      .text1 {
+        color: #ffff;
+
+        .text-head {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: start;
+          h1 {
+            width: 100%;
+            font-size: 140px;
+          }
+
+          h2 {
+            font-size: 50px;
+          }
+          p {
+            margin-top: 10%;
+            font-size: 40px;
+          }
+        }
+
+        margin-left: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: start;
+        gap: 25%;
+      }
+
+      .bottom-left {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-size: 25px;
+      }
+
+      .text2 {
+        height: 100%;
+        width: auto;
+        display: flex;
+        justify-content: flex-end;
+
+        align-items: flex-end;
+      }
+
+      .text2 img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+      @media screen and (max-width: 1100px) {
+        .content2 {
+          flex-direction: column;
+          .text1 {
+            justify-content: start;
+            .bottom-left {
+              margin-top: 20%;
+            }
+          }
+          .text2 {
+            img {
+              position: absolute; 
+              bottom: 20px; 
+              width: 50%; 
+              height: auto; 
+              object-fit: contain;
+            }
+          }
+        }
+      }
+      @media screen and (max-width: 791px) {
+        .content2 {
+          .text1 {
+            height: 100%;
+            margin-top: 15%;
+            margin-left: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            gap: 10%;
+            .text-head {
+              h1 {
+                font-size: 100px;
+              }
+              h2 {
+                font-size: 30px;
+              }
+              p {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+      }
+      @media screen and (max-width: 608px) {
+        .content2 {
+          .text1 {
+            height: 100%;
+            margin-top: 15%;
+            margin-left: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            gap: 10%;
+            .text-head {
+              h1 {
+                font-size: 70px;
+              }
+              h2 {
+                font-size: 30px;
+              }
+              p {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .content1{
+          .logo img {
+            width: 70px;
+            height: 70px;
+          }
+        }
+        .content2 {
+          .text1 {
+            height: 100%;
+            margin-top: 15%;
+            margin-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            gap: 10%;
+            .text-head {
+              h1 {
+                font-size: 50px;
+              }
+              h2 {
+                font-size: 30px;
+              }
+              p {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+      }
+    </style>
+    <body>
+      <div class="content">
+        <div class="content-bg">
+          <div class="content1">
+            <div class="logo">
+              <img src="{% static 'img/logo.png' %}" alt="Logo" />
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+              <i
+                class="fa-solid fa-bars"
+                style="font-size: 60px; color: #ffff"
+              ></i>
+              <div class="menu" id="myMenu">
+                <div class="menu-item">
+                  <a href="{% url 'ce04s' %}">CE01</a>
+                </div>
+                <div class="menu-item">
+                  <a href="{% url 'ce03s' %}">CE02</a>
+                </div>
+                <div class="menu-item">
+                  <a href="{% url 'ce02s' %}">CE03</a>
+                </div>
+                <div class="menu-item">
+                  <a href="{% url 'ce01s' %}">CE04</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content2">
+            <div class="text1">
+              <div class="text-head">
+                <h1>WELCOME</h1>
+                <h2>COMPUTER ENGINEERING</h2>
+                <p>This site shows all members of<br />Computer Engineering.</p>
+              </div>
+
+              <div class="bottom-left">
+                King Mongkut's Institute of Technology<br />Ladkrabang Prince of
+                Chumphon Campus
+              </div>
+            </div>
+            <div class="text2">
+              <img src="{% static 'img/ce.png' %}" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+
+    <script>
+      function toggleMenu() {
+        const menu = document.querySelector(".menu");
+        menu.classList.toggle("show");
+      }
+
+      document.addEventListener("click", function (event) {
+        const menu = document.querySelector(".menu");
+        const hamburger = document.querySelector(".hamburger");
+        if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+          menu.classList.remove("show");
+        }
+      });
+
+    </script>
+  </body>
+</html>
